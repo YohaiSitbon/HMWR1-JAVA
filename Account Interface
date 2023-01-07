@@ -1,0 +1,41 @@
+public interface IAccount {
+    void deposit(double amount);
+    double withdraw(double amount);
+    double getCurrentBalance();
+    int getAccountNumber();
+}
+
+public class StandardAccount implements IAccount {
+    private int accountNumber;
+    private double balance;
+
+    public StandardAccount(int accountNumber) {
+        this.accountNumber = accountNumber;
+        this.balance = 0.0;
+    }
+
+    @Override
+    public void deposit(double amount) {
+        this.balance += amount;
+    }
+
+    @Override
+    public double withdraw(double amount) {
+        if (this.balance - amount < 0) {
+            return 0.0;
+        } else {
+            this.balance -= amount;
+            return amount;
+        }
+    }
+
+    @Override
+    public double getCurrentBalance() {
+        return this.balance;
+    }
+
+    @Override
+    public int getAccountNumber() {
+        return this.accountNumber;
+    }
+}
